@@ -1,9 +1,10 @@
 import boto3
-import structs
+from . import structs
 
 
 def get_dynamodb_client():
     return boto3.client("dynamodb")
+
 
 def put_item(dynamodb_client, table_name: str, item: structs.DynamoItem):
     response = dynamodb_client.put_item(
