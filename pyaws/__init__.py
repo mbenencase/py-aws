@@ -1,4 +1,4 @@
-from . import structs
+from .structs import DynamoItem, SQSMessage
 from . import DynamoDB
-from . import SimpleQueueService
-from . import SimpleStorageService
+from . import SQS
+from . import S3

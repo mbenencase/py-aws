@@ -6,11 +6,12 @@ from typing import Dict, List, Any
 from .structs import SQSMessage
 
 
-def get_sqs_client():
-    return boto3.client("sqs")
+def get_sqs_client(region_name: str):
+    return boto3.client("sqs", region_name=region_name)
+
 
 def add_message_to_queue(
-    sqs_client, 
+    sqs_client,
     output_queue_url: str,
     message: SQSMessage,
     message_group_id: str,
@@ -25,8 +26,9 @@ def add_message_to_queue(
 
     return response
 
+
 def read_from_queue(
-    sqs_client, 
+    sqs_client,
     input_queue_url: str,
     max_number_of_messages: int = 1,
     message_attribute_names: List[str] = ['All'],
@@ -43,6 +45,7 @@ def read_from_queue(
     )
 
     return response
+
 
 def delete_from_queue(sqs_client, input_queue_url: str, receipt_handle: Dict[str, Any]):
     response = sqs_client.delete_message(
