@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='py_aws',
+    name='aws_easy_tool',
     version='0.1.0',
     description='A Python package to facilitate daily tasks when using AWS.',
     author='Marcelo Eduardo Benencase',
@@ -9,8 +9,8 @@ setup(
     url='https://github.com/mbenencase/py-aws',
     packages=find_packages(),
     install_requires=[
-        'boto3'
-        'pydantic'
+        'boto3',
+        'pydantic',
         'pydantic-settings',
         'tqdm',
     ],
@@ -21,7 +21,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'py-aws = pyaws.module1:main',
+            'aws-easy-tool = awseasytool.module1:main',
         ],
     },
 )
