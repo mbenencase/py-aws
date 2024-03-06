@@ -57,7 +57,7 @@ class SQSMessage(BaseModel):
     A model for constructing messages to be sent to Amazon SQS.
 
     Attributes:
-    - message_uuid (str): A unique identifier for the message, automatically generated
+    - message_uuid (str): A unique identifier for the message.
       using UUID4. This can be overridden if a specific UUID is required.
     - body (Dict[str, Any]): The content of the message. This is a dictionary that
       contains the actual data to be sent as the SQS message body.
@@ -65,12 +65,15 @@ class SQSMessage(BaseModel):
     Example:
     To create a new SQS message with custom data:
     ```python
-    message = SQSMessage(body={"key": "value"})
+    import uuid
+
+    message_uuid = str(uuid.uuid4())
+    message = SQSMessage(message_uuid=message_uuid, body={"key": "value"})
     ```
 
     This creates an `SQSMessage` instance with a unique `message_uuid` and a body
     containing the specified key-value pair.
     """
 
-    message_uuid: str = str(uuid.uuid4())
+    message_uuid: str
     body: Dict[str, Any]

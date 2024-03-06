@@ -42,7 +42,7 @@ def add_message_to_queue(
     output_queue_url: str,
     message: SQSMessage,
     message_group_id: str,
-    message_deduplication_id: str = str(uuid.uuid4())
+    message_deduplication_id: str = None
 ):
     """
     Sends a message to an Amazon SQS queue with support for message deduplication and grouping.
@@ -62,7 +62,7 @@ def add_message_to_queue(
       in a FIFO manner.
     - message_deduplication_id (str, optional): The identifier for the message deduplication.
       This is used to ensure messages are not processed more than once. Defaults to a
-      randomly generated UUID, making each message unique.
+      randomly generated UUID, making each message unique if passed as None.
 
     Returns:
     - The response from the SQS `send_message` call, which includes details about the
@@ -84,6 +84,10 @@ def add_message_to_queue(
     Note: This function is intended for use with FIFO queues. For standard queues, message
     grouping and deduplication IDs are not required.
     """
+
+    if message_deduplication_id is None:
+        message_deduplication_id = str(uuid.uuid4())
+
     return sqs_client.send_message(
         QueueUrl=output_queue_url,
         MessageBody=json.dumps(dict(message)),
