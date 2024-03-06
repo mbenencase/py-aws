@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='aws_easy_tool',
-    version='0.4.0',
+    version='0.5.0',
     description='A Python package to facilitate daily tasks when using AWS.',
     author='Marcelo Eduardo Benencase',
     author_email='marcelo.benencase@gmail.com',
