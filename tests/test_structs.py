@@ -1,12 +1,12 @@
 import sys
-import src
+import pyaws
 
 
 sys.path.append("../")
 
 
 def test_DynamoItem():
-    class Movie(src.structs.DynamoItem):
+    class Movie(pyaws.DynamoItem):
         title: str
         year: int
         price: float
