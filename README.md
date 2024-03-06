@@ -2,6 +2,12 @@
 
 A simple tool to perform daily tasks.
 
+## IMPORTANT
+
+This library assumes that you have your credentials already set at `$HOME/.aws`. Install AWS CLI and configure your machine before moving on.
+
+If you want to use this library in a Docker image, I suggest to use: `-v $HOME/.aws:/root/.aws`.
+
 ## How to Install
 
 ```
