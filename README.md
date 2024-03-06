@@ -19,7 +19,7 @@ import uuid
 import pyaws
 import time
 
-class MyDynamoItem(pyaws.structs.DynamoItem):
+class MyDynamoItem(pyaws.DynamoItem):
     username: str
     password: str
     email: str
@@ -47,9 +47,9 @@ To get or put a file to S3, we assume that you'll upload a local file stored in 
 ```[python]
 import pyaws
 
-s3_client = pyaws.SimpleStorageService.get_s3_client()
+s3_client = pyaws.S3.get_s3_client()
 
-response = pyaws.SimpleStorageService.put_item_from_local_path(
+response = pyaws.S3.put_item_from_local_path(
     s3_client=s3_client,
     bucket_name="my-website",
     file_pth="/tmp/index.html",
@@ -67,17 +67,17 @@ We assume that you have set your Queue as a First-In-First-Out (FIFO) queue in y
 
 import pyaws
 
-sqs_client = pyaws.SimpleQueueService.get_sqs_client()
+sqs_client = pyaws.SQS.get_sqs_client()
 
 # This is a simple template to follow to send your messages through the SQS queue.
 # it has already a message uuid in case you want it.
-message = pyaws.structs.SQSMessage(
+message = pyaws.SQSMessage(
     body={
         "message": "Hello World
     }
 )
 
-response = pyaws.SimpleQueueService.add_message_to_queue(
+response = pyaws.SQS.add_message_to_queue(
     sqs_client=sqs_client,
     output_queue_url="your-sqs-queue-url",
     message=message,
