@@ -6,7 +6,7 @@ from typing import Dict, List, Any
 from .structs import SQSMessage
 
 
-def get_sqs_client(region_name: str):
+def get_sqs_client(region_name: str = "us-east-1"):
     return boto3.client("sqs", region_name=region_name)
 
 
@@ -52,3 +52,5 @@ def delete_from_queue(sqs_client, input_queue_url: str, receipt_handle: Dict[str
         QueueUrl=input_queue_url,
         ReceiptHandle=receipt_handle
     )
+
+    return response
